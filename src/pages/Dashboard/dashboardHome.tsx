@@ -1,7 +1,21 @@
-export default function dashboardHome() {
+import NavbarDashboard from "./components/navbar";
+import Sidebar from "./components/sidebar";
+
+export default function DashboardHome() {
   return (
-    <div>
-      <h1>Dashboard Home</h1>
+    <div className="flex">
+      {/* Sidebar fixed */}
+      <Sidebar />
+
+      {/* Content */}
+      <div className="ml-64 flex-1">
+        <NavbarDashboard/>
+
+        <main className="p-6">
+          <h1 className="text-2xl font-semibold">Dashboard</h1>
+          <p className="mt-3 text-gray-600">Selamat datang di dashboard!</p>
+        </main>
+      </div>
     </div>
   );
 }

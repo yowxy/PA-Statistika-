@@ -5,6 +5,7 @@ import AppRoutes from "./routes/routes";
 import './input.css'  
 
 const App: React.FC = () => {
+  
   const routing = useRoutes(AppRoutes);
   return <>{routing}</>;
 };
