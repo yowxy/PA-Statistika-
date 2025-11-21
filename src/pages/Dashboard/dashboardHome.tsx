@@ -1,3 +1,4 @@
+import DashboardChart from "./components/chart";
 import NavbarDashboard from "./components/navbar";
 import Sidebar from "./components/sidebar";
 
@@ -14,6 +15,7 @@ export default function DashboardHome() {
         <main className="p-6">
           <h1 className="text-2xl font-semibold">Dashboard</h1>
           <p className="mt-3 text-gray-600">Selamat datang di dashboard!</p>
+          <DashboardChart />
         </main>
       </div>
     </div>

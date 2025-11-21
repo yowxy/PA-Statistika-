@@ -1,6 +1,7 @@
 import type { RouteObject } from "react-router-dom";
 import Home from "../pages/landing/Home";
 import DashboardHome from "../pages/Dashboard/dashboardHome";
+import DataKemiskinan from "../pages/Dashboard/pages/dataKemiskinan";
 
 const AppRoutes: RouteObject[] = [
   {
@@ -10,6 +11,10 @@ const AppRoutes: RouteObject[] = [
   {
     path: "/dashboard",
     element: <DashboardHome />,
+  },
+  {
+    path: "/dashboard/data-kemiskinan",
+    element: <DataKemiskinan />,
   },
   {
     path: "*",
