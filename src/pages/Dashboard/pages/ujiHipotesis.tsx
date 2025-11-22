@@ -1,24 +1,30 @@
 import LayoutsDashboard from "../layouts/layouts";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-// Import fungsi uji hipotesis
+// Fungsi uji hipotesis
 import { zTest } from "../../../utils/hipotesis/zTest";
 import { tTest } from "../../../utils/hipotesis/tTest";
-import {  proportionTest } from "../../../utils/hipotesis/proportion";
+import { proportionTest } from "../../../utils/hipotesis/proportion";
 import { interpret } from "../../../utils/hipotesis/interpret";
+
+type ResultPayload = {
+  stat: number;
+  pValue: number;
+  critical: number;
+  decision: string;
+};
 
 export default function UjiHipotesis() {
   const [method, setMethod] = useState("z");
   const [alpha, setAlpha] = useState(0.05);
 
-  // Input form
   const [sampleStat, setSampleStat] = useState<number | null>(null);
   const [populationValue, setPopulationValue] = useState<number | null>(null);
   const [stdDev, setStdDev] = useState<number | null>(null);
   const [sampleSize, setSampleSize] = useState<number | null>(null);
 
-  type Result = { stat: number; interpretation: ReturnType<typeof interpret> } | null;
-  const [result, setResult] = useState<Result>(null);
+  const navigate = useNavigate();
 
   const hitungHipotesis = () => {
     if (!sampleStat || !populationValue || !sampleSize) {
@@ -26,7 +32,7 @@ export default function UjiHipotesis() {
       return;
     }
 
-    let stat: number = 0;
+    let stat = 0;
 
     if (method === "z") {
       if (!stdDev) return alert("Masukkan standar deviasi!");
@@ -42,36 +48,41 @@ export default function UjiHipotesis() {
       stat = proportionTest(sampleStat, populationValue, sampleSize);
     }
 
-    // critical value normal approx
-    const critical = 1.96; // default α = 0.05
+    const critical = 1.96;
+    const interpretation = interpret(stat, critical);
 
-    setResult({
+    const payload: ResultPayload = {
       stat,
-      interpretation: interpret(stat, critical),
-    });
+      pValue: 0.034, // contoh, nanti bisa diganti fungsi real
+      critical,
+      decision:
+        typeof interpretation === "string"
+          ? interpretation
+          : interpretation.message,
+    };
+
+    navigate("/dashboard/hasil-uji", { state: payload });
   };
 
   return (
     <LayoutsDashboard>
       <h1 className="text-2xl font-semibold">Uji Hipotesis</h1>
-      <p className="mt-3 text-gray-600">
-        Lakukan uji hipotesis berdasarkan data kemiskinan.
-      </p>
 
-      <div className="mt-8 space-y-6">
+      <div className="mt-6 space-y-6">
 
         {/* Input Hipotesis */}
-        <div className="bg-white p-5 rounded-xl shadow-sm border space-y-4">
+        <div className="bg-white p-5 rounded-xl border space-y-3">
           <h2 className="text-lg font-semibold">Input Hipotesis</h2>
           <input className="border p-2 rounded w-full" placeholder="H0" />
           <input className="border p-2 rounded w-full" placeholder="H1" />
         </div>
 
-        {/* Parameter */}
-        <div className="bg-white p-5 rounded-xl shadow-sm border space-y-4">
+        {/* Parameter Uji */}
+        <div className="bg-white p-5 rounded-xl border space-y-4">
           <h2 className="text-lg font-semibold">Parameter Uji</h2>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+
             <select
               className="border p-2 rounded"
               value={method}
@@ -117,30 +128,17 @@ export default function UjiHipotesis() {
               placeholder="Ukuran Sampel (n)"
               onChange={(e) => setSampleSize(Number(e.target.value))}
             />
+
           </div>
         </div>
 
-        {/* Button */}
         <button
           onClick={hitungHipotesis}
-          className="bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700"
+          className="bg-blue-600 text-white px-5 py-3 rounded-lg"
         >
           Hitung Uji Hipotesis
         </button>
 
-        {/* Result */}
-        {result && (
-          <div className="bg-white p-5 rounded-xl shadow-sm border mt-4">
-            <h2 className="text-lg font-semibold mb-3">Hasil Perhitungan</h2>
-
-            <p><b>Statistik Uji:</b> {result.stat.toFixed(4)}</p>
-            <p className="mt-2 text-blue-600 font-semibold">
-              {typeof result.interpretation === "string"
-                ? result.interpretation
-                : JSON.stringify(result.interpretation)}
-            </p>
-          </div>
-        )}
       </div>
     </LayoutsDashboard>
   );

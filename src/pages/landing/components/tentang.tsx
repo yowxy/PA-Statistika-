@@ -1,20 +1,125 @@
+import { Database, BarChart3, Target, TrendingUp } from "lucide-react";
+
 export default function Tentang() {
+    const features = [
+        {
+            icon: Database,
+            title: "Data Resmi",
+            description: "Menggunakan data resmi dari OpenData Jatim yang terpercaya dan terupdate"
+        },
+        {
+            icon: BarChart3,
+            title: "Analisis Mendalam",
+            description: "Proses pembersihan, analisis, dan visualisasi data yang komprehensif"
+        },
+        {
+            icon: Target,
+            title: "Uji Hipotesis",
+            description: "Penerapan konsep Pengujian Hipotesis dalam Praktikum Statistika Dasar"
+        },
+        {
+            icon: TrendingUp,
+            title: "Interaktif",
+            description: "Visualisasi interaktif untuk memahami perbedaan dan pola antar wilayah"
+        }
+    ];
+
     return (
-        <div className="flex justify-center items-center text-center mt-20 mb-20"> 
-        <div className="flex justify-center mt-[300px] flex-col"> 
-            <h1 data-aos = "fade-up"  data-aos-duration="1100"  className="font-semibold text-5xl">Tentang Proyek</h1>
-            <p  data-aos = "fade-up"  data-aos-duration="1100" className="text-2xl font-normal mt-2">Analisa kemiskinan melalui uji hipotesis</p>
-            <div className="mt-28">
-                <p data-aos = "fade-up"  data-aos-duration="1100">
-                    Proyek ini merupakan penerapan konsep Pengujian Hipotesis pada <br/>
-                    mata kuliah Praktikum Statistika Dasar dengan studi kasus <br/>
-                     kemiskinan Kabupaten/Kota di Jawa Timur. Data resmi dari <br/>
-                     OpenData Jatim diolah melalui proses pembersihan, analisis, dan <br/> 
-                     visualisasi untuk membantu pengguna memahami perbedaan  <br/>
-                     atau pola antar wilayah secara interaktif. <br/>
-                </p>
+        <section id="tentang" className="w-full py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-white to-gray-50">
+            <div className="max-w-7xl mx-auto">
+                {/* Header Section */}
+                <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+                    <div 
+                        data-aos="fade-up" 
+                        data-aos-duration="800" 
+                        className="inline-block bg-[#DDD5CE] px-4 py-2 rounded-3xl mb-6"
+                    >
+                        <span className="font-semibold text-sm sm:text-base">Tentang Proyek</span>
+                    </div>
+                    
+                    <h1 
+                        data-aos="fade-up" 
+                        data-aos-duration="1000" 
+                        className="font-semibold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-4"
+                    >
+                        Tentang Proyek
+                    </h1>
+                    
+                    <p 
+                        data-aos="fade-up" 
+                        data-aos-duration="1100" 
+                        className="text-lg sm:text-xl lg:text-2xl font-normal text-gray-600 max-w-3xl mx-auto"
+                    >
+                        Analisa kemiskinan melalui uji hipotesis
+                    </p>
+                </div>
+
+                {/* Main Content */}
+                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-20">
+                    {/* Text Content */}
+                    <div 
+                        data-aos="fade-right" 
+                        data-aos-duration="1000"
+                        className="space-y-6"
+                    >
+                        <div className="bg-white rounded-3xl p-6 sm:p-8 lg:p-10 shadow-lg border border-gray-100">
+                            <p className="text-base sm:text-lg lg:text-xl text-gray-700 leading-relaxed">
+                                Proyek ini merupakan penerapan konsep <span className="font-semibold text-gray-900">Pengujian Hipotesis</span> pada 
+                                mata kuliah Praktikum Statistika Dasar dengan studi kasus kemiskinan Kabupaten/Kota di Jawa Timur. 
+                                Data resmi dari <span className="font-semibold text-gray-900">OpenData Jatim</span> diolah melalui proses 
+                                pembersihan, analisis, dan visualisasi untuk membantu pengguna memahami perbedaan atau pola antar 
+                                wilayah secara interaktif.
+                            </p>
+                        </div>
+                    </div>
+
+                    {/* Visual Element / Stats */}
+                    <div 
+                        data-aos="fade-left" 
+                        data-aos-duration="1000"
+                        className="grid grid-cols-2 gap-4 sm:gap-6"
+                    >
+                        <div className="bg-[#D1F447] rounded-2xl p-6 sm:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">38</div>
+                            <div className="text-sm sm:text-base font-semibold text-gray-800">Kabupaten/Kota</div>
+                        </div>
+                        <div className="bg-[#D1F447] rounded-2xl p-6 sm:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">100%</div>
+                            <div className="text-sm sm:text-base font-semibold text-gray-800">Data Resmi</div>
+                        </div>
+                        <div className="bg-[#D1F447] rounded-2xl p-6 sm:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300 col-span-2">
+                            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">OpenData Jatim</div>
+                            <div className="text-sm sm:text-base font-semibold text-gray-800">Sumber Data Terpercaya</div>
+                        </div>
+                    </div>
+                </div>
+
+                {/* Features Grid */}
+                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                    {features.map((feature, index) => {
+                        const Icon = feature.icon;
+                        return (
+                            <div
+                                key={index}
+                                data-aos="fade-up"
+                                data-aos-duration="800"
+                                data-aos-delay={index * 100}
+                                className="bg-white rounded-2xl p-6 sm:p-8 shadow-md hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 border border-gray-100"
+                            >
+                                <div className="bg-[#D1F447] w-12 h-12 sm:w-14 sm:h-14 rounded-xl flex items-center justify-center mb-4">
+                                    <Icon className="w-6 h-6 sm:w-7 sm:h-7 text-gray-900" />
+                                </div>
+                                <h3 className="font-semibold text-lg sm:text-xl text-gray-900 mb-3">
+                                    {feature.title}
+                                </h3>
+                                <p className="text-sm sm:text-base text-gray-600 leading-relaxed">
+                                    {feature.description}
+                                </p>
+                            </div>
+                        );
+                    })}
+                </div>
             </div>
-        </div>
-        </div>
+        </section>
     );
 }
