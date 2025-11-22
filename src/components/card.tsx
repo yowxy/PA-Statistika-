@@ -7,17 +7,17 @@ type CardProps = {
 
 export default function Card({ title, description }: CardProps) {
   return (
-    <div className="bg-[#D1F447] w-[295px] h-auto p-6 mt-10 rounded-3xl font-poppins">
-      <div className="flex flex-col">
-        <h1 className="text-left font-semibold text-2xl mb-3">
+    <div className="bg-[#D1F447] w-full max-w-sm h-full p-6 sm:p-8 rounded-3xl font-poppins shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-2 flex flex-col">
+      <div className="flex flex-col flex-1">
+        <h1 className="text-left font-semibold text-xl sm:text-2xl mb-4 text-gray-900 leading-tight">
           {title}
         </h1>
 
-        <p className="text-left">
+        <p className="text-left text-gray-800 text-sm sm:text-base leading-relaxed flex-1">
           {description}
         </p>
 
-        <div className="mt-auto pt-10">
+        <div className="mt-6 sm:mt-8 pt-4">
           <Button />
         </div>
       </div>

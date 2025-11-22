@@ -1,5 +1,14 @@
 import LayoutsDashboard from "../layouts/layouts";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { 
+  CheckCircle2, 
+  XCircle, 
+  BarChart3, 
+  TrendingUp, 
+  Target, 
+  ArrowLeft,
+  FileText
+} from "lucide-react";
 
 type ResultPayload = {
   stat: number;
@@ -10,45 +19,161 @@ type ResultPayload = {
 
 export default function HasilUji() {
   const location = useLocation();
+  const navigate = useNavigate();
   const data = location.state as ResultPayload | null;
+
+  if (!data) {
+    return (
+      <LayoutsDashboard>
+        <div className="flex flex-col items-center justify-center min-h-[400px] text-center">
+          <XCircle className="w-16 h-16 text-gray-400 mb-4" />
+          <h2 className="text-2xl font-semibold text-gray-900 mb-2">Data Tidak Ditemukan</h2>
+          <p className="text-gray-600 mb-6">Silakan lakukan uji hipotesis terlebih dahulu.</p>
+          <button
+            onClick={() => navigate("/dashboard/uji-hipotesis")}
+            className="px-6 py-3 bg-[#D1F447] text-gray-900 rounded-xl font-semibold hover:bg-[#D1F447]/90 transition-colors"
+          >
+            Kembali ke Uji Hipotesis
+          </button>
+        </div>
+      </LayoutsDashboard>
+    );
+  }
+
+  const isRejected =
+    data.decision.toLowerCase().includes("tolak") ||
+    data.decision.toLowerCase().includes("reject");
 
   return (
     <LayoutsDashboard>
-      <h1 className="text-2xl font-semibold">Hasil Uji Hipotesis</h1>
-      <p className="mt-2 text-gray-600">Berikut adalah hasil perhitungannya.</p>
+      <div className="space-y-6">
+        
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div>
+            <h1 className="text-3xl font-bold text-gray-900">Hasil Uji Hipotesis</h1>
+            <p className="mt-2 text-gray-600">
+              Berikut adalah hasil perhitungan uji hipotesis
+            </p>
+          </div>
+          <button
+            onClick={() => navigate("/dashboard/uji-hipotesis")}
+            className="flex items-center gap-2 px-4 py-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-xl transition-colors"
+          >
+            <ArrowLeft className="w-5 h-5" />
+            <span className="hidden sm:inline">Kembali</span>
+          </button>
+        </div>
 
-      <div className="mt-6 bg-white border shadow p-6 rounded-xl space-y-4">
-        <h2 className="text-xl font-semibold">Ringkasan Hasil</h2>
+        {/* Decision Card */}
+        <div className={`rounded-2xl p-6 shadow-lg border-2 ${
+          isRejected ? "bg-red-50 border-red-200" : "bg-green-50 border-green-200"
+        }`}>
+          <div className="flex items-center gap-4">
+            <div className={`w-16 h-16 rounded-xl flex items-center justify-center ${
+              isRejected ? "bg-red-100" : "bg-green-100"
+            }`}>
+              {isRejected ? (
+                <XCircle className="w-8 h-8 text-red-600" />
+              ) : (
+                <CheckCircle2 className="w-8 h-8 text-green-600" />
+              )}
+            </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="flex-1">
+              <p className="text-sm font-medium text-gray-600 mb-1">Keputusan</p>
+              <h2 className={`text-2xl font-bold ${
+                isRejected ? "text-red-700" : "text-green-700"
+              }`}>
+                {data.decision}
+              </h2>
+            </div>
+          </div>
+        </div>
 
-          <div className="p-4 border rounded-lg">
-            <p className="text-gray-600">Statistik Uji</p>
-            <p className="text-2xl font-bold text-blue-600">
-              {data?.stat.toFixed(4)}
+        {/* Stats */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center mb-4">
+              <BarChart3 className="w-6 h-6 text-gray-900" />
+            </div>
+            <p className="text-sm font-medium text-gray-600 mb-2">Statistik Uji</p>
+            <p className="text-3xl font-bold text-gray-900">
+              {data.stat.toFixed(4)}
             </p>
           </div>
 
-          <div className="p-4 border rounded-lg">
-            <p className="text-gray-600">p-value</p>
-            <p className="text-2xl font-bold text-blue-600">
-              {data?.pValue}
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center mb-4">
+              <TrendingUp className="w-6 h-6 text-gray-900" />
+            </div>
+            <p className="text-sm font-medium text-gray-600 mb-2">p-value</p>
+            <p className="text-3xl font-bold text-gray-900">
+              {data.pValue.toFixed(4)}
             </p>
           </div>
 
-          <div className="p-4 border rounded-lg">
-            <p className="text-gray-600">Nilai Kritis</p>
-            <p className="text-2xl font-bold text-blue-600">
-              {data?.critical}
+          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+            <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center mb-4">
+              <Target className="w-6 h-6 text-gray-900" />
+            </div>
+            <p className="text-sm font-medium text-gray-600 mb-2">Nilai Kritis</p>
+            <p className="text-3xl font-bold text-gray-900">
+              ±{data.critical.toFixed(2)}
             </p>
           </div>
 
-          <div className="p-4 border rounded-lg">
-            <p className="text-gray-600">Keputusan</p>
-            <p className="text-2xl font-bold text-green-600">
-              {data?.decision}
+        </div>
+
+        {/* Interpretation */}
+        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+          <div className="flex items-center gap-3 mb-4">
+            <div className="w-10 h-10 bg-[#D1F447] rounded-xl flex items-center justify-center">
+              <FileText className="w-5 h-5 text-gray-900" />
+            </div>
+            <h2 className="text-xl font-semibold text-gray-900">Interpretasi</h2>
+          </div>
+
+          <p className="text-gray-700">
+            <span className="font-semibold">Statistik Uji:</span> {data.stat.toFixed(4)}
+          </p>
+          <p className="text-gray-700">
+            <span className="font-semibold">Nilai Kritis:</span> ±{data.critical.toFixed(2)}
+          </p>
+          <p className="text-gray-700">
+            <span className="font-semibold">p-value:</span> {data.pValue.toFixed(4)}
+          </p>
+
+          <div className="mt-4 p-4 bg-gray-50 rounded-xl">
+            <p className="text-sm text-gray-600">
+              {isRejected
+                ? "Berdasarkan hasil uji hipotesis, H₀ ditolak. Ada cukup bukti untuk menerima H₁."
+                : "Berdasarkan hasil uji hipotesis, H₀ tidak ditolak. Tidak ada cukup bukti untuk menerima H₁."}
             </p>
           </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex flex-wrap gap-4">
+
+          <button
+            onClick={() => navigate("/dashboard/uji-hipotesis")}
+            className="px-6 py-3 bg-[#D1F447] text-gray-900 rounded-xl font-semibold hover:bg-[#D1F447]/90 transition shadow-md"
+          >
+            Uji Hipotesis Baru
+          </button>
+
+          <button
+            onClick={() =>
+              navigate("/dashboard/intrepretasi", {
+                state: data, // <<< kirim data ke interpretasi
+              })
+            }
+            className="px-6 py-3 bg-white text-gray-900 border-2 border-gray-300 rounded-xl font-semibold hover:bg-gray-50 hover:border-[#D1F447] transition"
+          >
+            Lihat Interpretasi
+          </button>
 
         </div>
       </div>
