@@ -2,6 +2,7 @@ import type { RouteObject } from "react-router-dom";
 import Home from "../pages/landing/Home";
 import DashboardHome from "../pages/Dashboard/dashboardHome";
 import DataKemiskinan from "../pages/Dashboard/pages/dataKemiskinan";
+import UjiHipotesis from "../pages/Dashboard/pages/ujiHipotesis";
 
 const AppRoutes: RouteObject[] = [
   {
@@ -15,6 +16,10 @@ const AppRoutes: RouteObject[] = [
   {
     path: "/dashboard/data-kemiskinan",
     element: <DataKemiskinan />,
+  },
+  {
+    path: "/dashboard/uji-hipotesis",
+    element: <UjiHipotesis />,
   },
   {
     path: "*",
