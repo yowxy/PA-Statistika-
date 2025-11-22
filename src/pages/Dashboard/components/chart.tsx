@@ -18,6 +18,7 @@ ChartJS.register(
   Legend
 );
 
+
 export default function DashboardCharts() {
   const barData = {
     labels: ["Jan", "Feb", "Mar", "Apr", "May"],
