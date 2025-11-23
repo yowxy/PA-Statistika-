@@ -13,10 +13,10 @@ export default function LayoutsDashboard({ children }: LayoutsDashboardProps) {
       <Sidebar />
 
       {/* Content */}
-      <div className="flex-1 min-h-screen sm:ml-64 transition-all duration-300">
+      <div className="flex-1 min-h-screen sm:ml-56 md:ml-64 transition-all duration-300">
         <NavbarDashboard />
 
-        <main className="p-4 sm:p-6 lg:p-8">
+        <main className="p-4 sm:p-5 md:p-6 lg:p-8">
           {children}
         </main>
       </div>

@@ -170,20 +170,20 @@ export default function DataKemiskinan() {
 
   return (
     <LayoutsDashboard>
-      <div className="space-y-6">
+      <div className="space-y-4 sm:space-y-5 md:space-y-6">
       {/* Header */}
       <div>
-        <h1 className="text-3xl font-bold text-gray-900">Data Kemiskinan</h1>
-        <p className="mt-2 text-gray-600">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Data Kemiskinan</h1>
+        <p className="mt-1 sm:mt-2 text-sm sm:text-base text-gray-600">
           Data kemiskinan dari API Pemerintah Provinsi Jawa Timur
         </p>
       </div>
 
       {/* Filter */}
-      <div className="flex flex-wrap gap-4">
-        <div className="relative">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
+        <div className="relative w-full sm:w-auto sm:min-w-[200px]">
           <select
-            className="px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D1F447] focus:border-transparent bg-white text-gray-900 font-medium appearance-none pr-10 cursor-pointer hover:border-[#D1F447] transition-colors"
+            className="w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 pr-10 sm:pr-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D1F447] focus:border-transparent bg-white text-gray-900 font-medium text-sm sm:text-base appearance-none cursor-pointer hover:border-[#D1F447] transition-colors"
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
           >
@@ -194,11 +194,13 @@ export default function DataKemiskinan() {
               </option>
             ))}
           </select>
-          <Calendar className="absolute right-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400 pointer-events-none" />
+          <div className="absolute right-3 sm:right-10 top-1/2 transform -translate-y-1/2 pointer-events-none flex items-center ">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-gray-500" />
+          </div>
         </div>
 
         <select
-          className="px-4 py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D1F447] focus:border-transparent bg-white text-gray-900 font-medium cursor-pointer hover:border-[#D1F447] transition-colors"
+          className="w-full sm:w-auto sm:min-w-[200px] px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D1F447] focus:border-transparent bg-white text-gray-900 font-medium text-sm sm:text-base cursor-pointer hover:border-[#D1F447] transition-colors"
           value={jenisData}
           onChange={(e) => setJenisData(e.target.value)}
         >
@@ -208,106 +210,108 @@ export default function DataKemiskinan() {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 lg:gap-6">
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
+        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-100">
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 mb-1">Total Data</p>
-              <h2 className="text-3xl font-bold text-gray-900">{filteredData.length.toLocaleString()}</h2>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs sm:text-sm text-gray-600 mb-1">Total Data</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">{filteredData.length.toLocaleString()}</h2>
               {selectedYear !== "all" && (
                 <p className="text-xs text-gray-500 mt-1">Tahun {selectedYear}</p>
               )}
             </div>
-            <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center">
-              <Database className="w-6 h-6 text-gray-900" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#D1F447] rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ml-2">
+              <Database className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-100">
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 mb-1">Tahun Terdata</p>
-              <h2 className="text-3xl font-bold text-gray-900">{tahunData.labels.length}</h2>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs sm:text-sm text-gray-600 mb-1">Tahun Terdata</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">{tahunData.labels.length}</h2>
               {selectedYear !== "all" && (
                 <p className="text-xs text-gray-500 mt-1">Tahun {selectedYear}</p>
               )}
             </div>
-            <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center">
-              <Calendar className="w-6 h-6 text-gray-900" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#D1F447] rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ml-2">
+              <Calendar className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900" />
             </div>
           </div>
         </div>
 
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-100 sm:col-span-2 lg:col-span-1">
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-600 mb-1">Total Wilayah</p>
-              <h2 className="text-3xl font-bold text-gray-900">{wilayahData.labels.length}</h2>
+            <div className="flex-1 min-w-0">
+              <p className="text-xs sm:text-sm text-gray-600 mb-1">Total Wilayah</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">{wilayahData.labels.length}</h2>
               {selectedYear !== "all" && (
                 <p className="text-xs text-gray-500 mt-1">Tahun {selectedYear}</p>
               )}
             </div>
-            <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center">
-              <MapPin className="w-6 h-6 text-gray-900" />
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-[#D1F447] rounded-lg sm:rounded-xl flex items-center justify-center shrink-0 ml-2">
+              <MapPin className="w-5 h-5 sm:w-6 sm:h-6 text-gray-900" />
             </div>
           </div>
         </div>
       </div>
 
       {/* Chart */}
-      <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg border border-gray-100">
-        <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-semibold text-gray-900">
+      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg border border-gray-100">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
             {jenisData === "persentase"
               ? "Tren Kemiskinan per Tahun"
               : "Kemiskinan per Kabupaten/Kota"}
           </h2>
           {selectedYear !== "all" && (
-            <span className="px-3 py-1 bg-[#D1F447] text-gray-900 rounded-lg text-sm font-medium">
+            <span className="px-3 py-1 bg-[#D1F447] text-gray-900 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap self-start sm:self-auto">
               Tahun {selectedYear}
             </span>
           )}
         </div>
-        <div className="h-[400px]">
+        <div className="h-[300px] sm:h-[350px] md:h-[400px] lg:h-[450px]">
           <Bar data={chartData} options={chartOptions} />
         </div>
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg border border-gray-100">
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">Tabel Data</h2>
-        <div className="overflow-x-auto">
-          <table className="w-full">
-            <thead>
-              <tr className="bg-[#D1F447] text-gray-900">
-                <th className="px-4 py-3 text-left font-semibold rounded-tl-xl">Tahun</th>
-                <th className="px-4 py-3 text-left font-semibold">Kabupaten/Kota</th>
-                <th className="px-4 py-3 text-left font-semibold rounded-tr-xl">Jumlah</th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredData.slice(0, 20).map((item, index) => (
-                <tr
-                  key={item.id}
-                  className={`border-b border-gray-100 ${
-                    index % 2 === 0 ? "bg-white" : "bg-gray-50"
-                  } hover:bg-[#D1F447]/10 transition-colors`}
-                >
-                  <td className="px-4 py-3 text-gray-900 font-medium">{item.tahun}</td>
-                  <td className="px-4 py-3 text-gray-700">{item.kabupaten_kota_se_jawa_timur}</td>
-                  <td className="px-4 py-3 text-gray-900 font-semibold">
-                    {item.jumlah.toLocaleString("id-ID")}
-                  </td>
+      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg border border-gray-100">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Tabel Data</h2>
+        <div className="overflow-x-auto -mx-4 sm:mx-0">
+          <div className="inline-block min-w-full align-middle">
+            <table className="min-w-full">
+              <thead>
+                <tr className="bg-[#D1F447] text-gray-900">
+                  <th className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold rounded-tl-xl">Tahun</th>
+                  <th className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold">Kabupaten/Kota</th>
+                  <th className="px-3 sm:px-4 py-2 sm:py-3 text-left text-xs sm:text-sm font-semibold rounded-tr-xl">Jumlah</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {filteredData.slice(0, 20).map((item, index) => (
+                  <tr
+                    key={item.id}
+                    className={`border-b border-gray-100 ${
+                      index % 2 === 0 ? "bg-white" : "bg-gray-50"
+                    } hover:bg-[#D1F447]/10 transition-colors`}
+                  >
+                    <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-900 font-medium">{item.tahun}</td>
+                    <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-700">{item.kabupaten_kota_se_jawa_timur}</td>
+                    <td className="px-3 sm:px-4 py-2 sm:py-3 text-xs sm:text-sm text-gray-900 font-semibold">
+                      {item.jumlah.toLocaleString("id-ID")}
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
 
       {/* Footer */}
-      <p className="text-sm text-gray-500 text-center">
+      <p className="text-xs sm:text-sm text-gray-500 text-center">
         Sumber: Badan Pusat Statistik Jawa Timur (API Resmi)
       </p>
       </div>

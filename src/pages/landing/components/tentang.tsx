@@ -25,22 +25,22 @@ export default function Tentang() {
     ];
 
     return (
-        <section id="tentang" className="w-full py-16 sm:py-20 lg:py-28 px-4 sm:px-6 lg:px-8 bg-linear-to-b from-white to-gray-50">
+        <section id="tentang" className="w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 px-3 sm:px-4 md:px-6 lg:px-8 bg-linear-to-b from-white to-gray-50">
             <div className="max-w-7xl mx-auto">
                 {/* Header Section */}
-                <div className="text-center mb-12 sm:mb-16 lg:mb-20">
+                <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">
                     <div 
                         data-aos="fade-up" 
                         data-aos-duration="800" 
-                        className="inline-block bg-[#DDD5CE] px-4 py-2 rounded-3xl mb-6"
+                        className="inline-block bg-[#DDD5CE] px-3 sm:px-4 py-1.5 sm:py-2 rounded-2xl sm:rounded-3xl mb-4 sm:mb-6"
                     >
-                        <span className="font-semibold text-sm sm:text-base">Tentang Proyek</span>
+                        <span className="font-semibold text-xs sm:text-sm md:text-base">Tentang Proyek</span>
                     </div>
                     
                     <h1 
                         data-aos="fade-up" 
                         data-aos-duration="1000" 
-                        className="font-semibold text-3xl sm:text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-4"
+                        className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-3 sm:mb-4 px-2"
                     >
                         Tentang Proyek
                     </h1>
@@ -48,17 +48,17 @@ export default function Tentang() {
                     <p 
                         data-aos="fade-up" 
                         data-aos-duration="1100" 
-                        className="text-lg sm:text-xl lg:text-2xl font-normal text-gray-600 max-w-3xl mx-auto"
+                        className="text-base sm:text-lg md:text-xl lg:text-2xl font-normal text-gray-600 max-w-3xl mx-auto px-4"
                     >
                         Analisa kemiskinan melalui uji hipotesis
                     </p>
                 </div>
 
                 {/* Main Content */}
-                <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center mb-16 lg:mb-20">
+                <div className="grid lg:grid-cols-2 gap-6 sm:gap-8 md:gap-10 lg:gap-12 items-center mb-12 sm:mb-16 md:mb-20">
                     {/* Text Content */}
                     <div 
-                        data-aos="fade-right" 
+                        data-aos="fade-up" 
                         data-aos-duration="1000"
                         className="space-y-6"
                     >
@@ -75,21 +75,21 @@ export default function Tentang() {
 
                     {/* Visual Element / Stats */}
                     <div 
-                        data-aos="fade-left" 
+                        data-aos="fade-up" 
                         data-aos-duration="1000"
-                        className="grid grid-cols-2 gap-4 sm:gap-6"
+                        className="grid grid-cols-2 gap-3 sm:gap-4 md:gap-6"
                     >
-                        <div className="bg-[#D1F447] rounded-2xl p-6 sm:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">38</div>
-                            <div className="text-sm sm:text-base font-semibold text-gray-800">Kabupaten/Kota</div>
+                        <div className="bg-[#D1F447] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-1 sm:mb-2">38</div>
+                            <div className="text-xs sm:text-sm md:text-base font-semibold text-gray-800">Kabupaten/Kota</div>
                         </div>
-                        <div className="bg-[#D1F447] rounded-2xl p-6 sm:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
-                            <div className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-2">100%</div>
-                            <div className="text-sm sm:text-base font-semibold text-gray-800">Data Resmi</div>
+                        <div className="bg-[#D1F447] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300">
+                            <div className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-1 sm:mb-2">100%</div>
+                            <div className="text-xs sm:text-sm md:text-base font-semibold text-gray-800">Data Resmi</div>
                         </div>
-                        <div className="bg-[#D1F447] rounded-2xl p-6 sm:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300 col-span-2">
-                            <div className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2">OpenData Jatim</div>
-                            <div className="text-sm sm:text-base font-semibold text-gray-800">Sumber Data Terpercaya</div>
+                        <div className="bg-[#D1F447] rounded-xl sm:rounded-2xl p-4 sm:p-6 md:p-8 shadow-lg transform hover:scale-105 transition-transform duration-300 col-span-2">
+                            <div className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-1 sm:mb-2">OpenData Jatim</div>
+                            <div className="text-xs sm:text-sm md:text-base font-semibold text-gray-800">Sumber Data Terpercaya</div>
                         </div>
                     </div>
                 </div>
