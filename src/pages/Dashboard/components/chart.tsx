@@ -47,35 +47,36 @@ export default function DashboardCharts() {
     fetchData();
   }, []);
 
-  // Group data by year for bar chart
+  // Group by year
   const groupByYear = () => {
     const yearMap: Record<number, number> = {};
     dataApi.forEach((item) => {
-      if (!yearMap[item.tahun]) yearMap[item.tahun] = 0;
-      yearMap[item.tahun] += item.jumlah;
+      yearMap[item.tahun] = (yearMap[item.tahun] || 0) + item.jumlah;
     });
+
+    const sortedKeys = Object.keys(yearMap).sort();
+
     return {
-      labels: Object.keys(yearMap).sort(),
-      values: Object.keys(yearMap).sort().map((key) => yearMap[Number(key)]),
+      labels: sortedKeys,
+      values: sortedKeys.map((key) => yearMap[Number(key)]),
     };
   };
 
-  // Group data by region for pie chart (top 5 regions)
+  // Group by region (top 5)
   const groupByTopRegions = () => {
     const regionMap: Record<string, number> = {};
+
     dataApi.forEach((item) => {
-      if (!regionMap[item.kabupaten_kota_se_jawa_timur])
-        regionMap[item.kabupaten_kota_se_jawa_timur] = 0;
-      regionMap[item.kabupaten_kota_se_jawa_timur] += item.jumlah;
+      regionMap[item.kabupaten_kota_se_jawa_timur] =
+        (regionMap[item.kabupaten_kota_se_jawa_timur] || 0) + item.jumlah;
     });
 
-    // Sort and get top 5
     const sorted = Object.entries(regionMap)
       .sort(([, a], [, b]) => b - a)
       .slice(0, 5);
 
     return {
-      labels: sorted.map(([name]) => name),
+      labels: sorted.map(([region]) => region),
       values: sorted.map(([, value]) => value),
     };
   };
@@ -102,10 +103,15 @@ export default function DashboardCharts() {
     plugins: {
       legend: { display: false },
       tooltip: {
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        backgroundColor: "rgba(0, 0, 0, 0.85)",
         padding: 10,
-        titleFont: { size: 12, weight: "bold" },
-        bodyFont: { size: 11 },
+        titleFont: {
+          size: 12,
+          weight: "bold" as const,
+        },
+        bodyFont: {
+          size: 11,
+        },
         cornerRadius: 8,
         displayColors: false,
       },
@@ -118,9 +124,7 @@ export default function DashboardCharts() {
         },
         ticks: {
           color: "#6B7280",
-          font: {
-            size: 10,
-          },
+          font: { size: 10 },
         },
       },
       x: {
@@ -129,9 +133,7 @@ export default function DashboardCharts() {
         },
         ticks: {
           color: "#6B7280",
-          font: {
-            size: 10,
-          },
+          font: { size: 10 },
         },
       },
     },
@@ -160,22 +162,23 @@ export default function DashboardCharts() {
     responsive: true,
     maintainAspectRatio: false,
     plugins: {
-      legend: { 
-        position: "bottom",
+      legend: {
+        position: "bottom" as const,
         labels: {
           padding: 10,
-          font: {
-            size: 10,
-          },
+          font: { size: 10 },
           color: "#374151",
           boxWidth: 12,
           boxHeight: 12,
         },
       },
       tooltip: {
-        backgroundColor: "rgba(0, 0, 0, 0.8)",
+        backgroundColor: "rgba(0, 0, 0, 0.85)",
         padding: 10,
-        titleFont: { size: 12, weight: "bold" },
+        titleFont: {
+          size: 12,
+          weight: "bold" as const,
+        },
         bodyFont: { size: 11 },
         cornerRadius: 8,
       },
@@ -185,16 +188,16 @@ export default function DashboardCharts() {
   if (loading) {
     return (
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-5">
-        <div className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 h-[280px] sm:h-[300px] md:h-[320px] lg:h-[350px] flex items-center justify-center">
+        <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 h-[320px] flex items-center justify-center">
           <div className="text-center">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 border-4 border-[#D1F447] border-t-transparent rounded-full animate-spin mx-auto mb-3 sm:mb-4"></div>
-            <p className="text-sm sm:text-base text-gray-600">Memuat data...</p>
+            <div className="w-12 h-12 border-4 border-[#D1F447] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-base text-gray-600">Memuat data...</p>
           </div>
         </div>
-        <div className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 h-[280px] sm:h-[300px] md:h-[320px] lg:h-[350px] flex items-center justify-center">
+        <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 h-[320px] flex items-center justify-center">
           <div className="text-center">
-            <div className="w-10 h-10 sm:w-12 sm:h-12 border-4 border-[#D1F447] border-t-transparent rounded-full animate-spin mx-auto mb-3 sm:mb-4"></div>
-            <p className="text-sm sm:text-base text-gray-600">Memuat data...</p>
+            <div className="w-12 h-12 border-4 border-[#D1F447] border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <p className="text-base text-gray-600">Memuat data...</p>
           </div>
         </div>
       </div>
@@ -203,18 +206,22 @@ export default function DashboardCharts() {
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 mt-4 sm:mt-5">
-      {/* BAR CHART - Trend per Tahun */}
-      <div className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 h-[280px] sm:h-[300px] md:h-[320px] lg:h-[350px]">
-        <h2 className="text-base sm:text-lg md:text-xl font-semibold mb-4 sm:mb-6 text-gray-900">Tren Kemiskinan per Tahun</h2>
-        <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px]">
+      {/* BAR CHART */}
+      <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 h-[350px]">
+        <h2 className="text-lg font-semibold mb-6 text-gray-900">
+          Tren Kemiskinan per Tahun
+        </h2>
+        <div className="w-full h-[260px]">
           <Bar data={barData} options={barOptions} />
         </div>
       </div>
 
-      {/* PIE CHART - Top 5 Kabupaten/Kota */}
-      <div className="bg-white p-4 sm:p-6 rounded-xl sm:rounded-2xl shadow-lg border border-gray-100 h-[280px] sm:h-[300px] md:h-[320px] lg:h-[350px]">
-        <h2 className="text-base sm:text-lg md:text-xl font-semibold mb-4 sm:mb-6 text-gray-900">Top 5 Kabupaten/Kota</h2>
-        <div className="w-full h-[200px] sm:h-[220px] md:h-[240px] lg:h-[260px]">
+      {/* PIE CHART */}
+      <div className="bg-white p-6 rounded-2xl shadow-lg border border-gray-100 h-[350px]">
+        <h2 className="text-lg font-semibold mb-6 text-gray-900">
+          Top 5 Kabupaten/Kota
+        </h2>
+        <div className="w-full h-[260px]">
           <Pie data={pieData} options={pieOptions} />
         </div>
       </div>
