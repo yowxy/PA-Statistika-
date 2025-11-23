@@ -4,7 +4,7 @@ export function zTest(
     standardDeviation: number,  
     sampleSize: number
 ): number {
-         const standardError = standardDeviation / Math.sqrt(sampleSize);
+        const standardError = standardDeviation / Math.sqrt(sampleSize);
         const zScore = (sampleMean - populationMean) / standardError;
         return zScore;
-    }
+    }   
