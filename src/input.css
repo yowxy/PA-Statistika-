@@ -3,3 +3,61 @@
   --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
   --font-poppins: "Poppins", sans-serif;
 }
+
+:root {
+  --color-body-bg: #f8fafc;
+  --color-text: #0f172a;
+  --color-border: #e5e7eb;
+  --color-nav-bg: #ffffff;
+  --color-nav-border: #e5e7eb;
+  --color-accent: #d1f447;
+  --color-card-bg: #ffffff;
+  --color-card-shadow: rgba(15, 23, 42, 0.08);
+}
+
+[data-theme="dark"] {
+  --color-body-bg: #020617;
+  --color-text: #f8fafc;
+  --color-border: #1e293b;
+  --color-nav-bg: #0f172a;
+  --color-nav-border: #1e293b;
+  --color-accent: #c4ff4d;
+  --color-card-bg: #0b1120;
+  --color-card-shadow: rgba(15, 23, 42, 0.45);
+}
+
+body {
+  background-color: var(--color-body-bg);
+  color: var(--color-text);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+[data-theme="dark"] .bg-white {
+  background-color: var(--color-card-bg) !important;
+}
+
+[data-theme="dark"] .bg-gray-50 {
+  background-color: #020617 !important;
+}
+
+[data-theme="dark"] .text-gray-900 {
+  color: var(--color-text) !important;
+}
+
+[data-theme="dark"] .text-gray-700 {
+  color: #cbd5f5 !important;
+}
+
+[data-theme="dark"] .text-gray-600 {
+  color: #94a3b8 !important;
+}
+
+[data-theme="dark"] .border-gray-100,
+[data-theme="dark"] .border-gray-200,
+[data-theme="dark"] .border-gray-300 {
+  border-color: var(--color-border) !important;
+}
+
+[data-theme="dark"] .bg-gray-100 {
+  background-color: #1e293b !important;
+}

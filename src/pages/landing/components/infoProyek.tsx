@@ -2,7 +2,7 @@ import Card from "../../../components/card";
 
 export default function InfoProyek() {
   return (
-    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 px-3 sm:px-4 md:px-6 lg:px-8">
+    <section className="w-full py-12 sm:py-16 md:py-20 lg:py-24 xl:py-28 px-3 sm:px-4 md:px-6 lg:px-8 transition-colors duration-200 text-(--color-text)">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center mb-8 sm:mb-12 md:mb-16 lg:mb-20">
@@ -17,7 +17,7 @@ export default function InfoProyek() {
           <h1 
             data-aos="fade-up" 
             data-aos-duration="1000" 
-            className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-gray-900 mb-3 sm:mb-4 px-2"
+            className="font-semibold text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl text-(--color-text) mb-3 sm:mb-4 px-2"
           >
             Informasi Proyek
           </h1>
@@ -25,7 +25,7 @@ export default function InfoProyek() {
           <p 
             data-aos="fade-up" 
             data-aos-duration="1100" 
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-600 max-w-3xl mx-auto px-4"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto px-4"
           >
             Penerapan Uji Hipotesis dalam Analisis Kemiskinan
           </p>

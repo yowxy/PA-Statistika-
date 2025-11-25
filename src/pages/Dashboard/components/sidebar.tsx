@@ -94,7 +94,7 @@ export default function Sidebar() {
                 } sm:translate-x-0`}
                 aria-label="Sidebar"
             >
-                <div className="h-full px-3 sm:px-4 py-4 sm:py-6 overflow-y-auto bg-white border-r border-gray-200 shadow-lg">
+                <div className="h-full px-3 sm:px-4 py-4 sm:py-6 overflow-y-auto bg-(--color-card-bg) border-r border-(--color-border) shadow-lg transition-colors duration-200 text-(--color-text)">
                     {/* Logo/Brand */}
                     <div className="mb-6 sm:mb-8 px-2">
                         <a href="/dashboard" className="flex items-center space-x-2 sm:space-x-3">
@@ -119,7 +119,7 @@ export default function Sidebar() {
                                         className={`flex items-center px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl transition-all duration-200 group ${
                                             active
                                                 ? 'bg-[#D1F447] text-gray-900 font-semibold shadow-md'
-                                                : 'text-gray-700 hover:bg-[#D1F447]/20 hover:text-gray-900'
+                                                : 'text-gray-700 dark:text-gray-300 hover:bg-[#D1F447]/20 hover:text-gray-900'
                                         }`}
                                     >
                                         <Icon className={`w-4 h-4 sm:w-5 sm:h-5 transition-colors shrink-0 ${
@@ -133,10 +133,10 @@ export default function Sidebar() {
                     </ul>
 
                     {/* Back to Home Link */}
-                    <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-gray-200">
+                    <div className="mt-6 sm:mt-8 pt-6 sm:pt-8 border-t border-(--color-border)">
                         <a
                             href="/"
-                            className="flex items-center px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-gray-700 hover:bg-gray-100 transition-all duration-200 group"
+                            className="flex items-center px-3 sm:px-4 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/10 transition-all duration-200 group"
                         >
                             <span className="ml-2 sm:ml-3 text-xs sm:text-sm font-medium">← Kembali ke Home</span>
                         </a>

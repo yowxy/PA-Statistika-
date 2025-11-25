@@ -170,11 +170,11 @@ export default function DataKemiskinan() {
 
   return (
     <LayoutsDashboard>
-      <div className="space-y-4 sm:space-y-5 md:space-y-6">
+      <div className="space-y-4 sm:space-y-5 md:space-y-6 text-(--color-text) transition-colors duration-200">
       {/* Header */}
       <div>
-        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900">Data Kemiskinan</h1>
-        <p className="mt-1 sm:mt-2 text-sm sm:text-base text-gray-600">
+        <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-(--color-text)">Data Kemiskinan</h1>
+        <p className="mt-1 sm:mt-2 text-sm sm:text-base text-gray-600 dark:text-gray-300">
           Data kemiskinan dari API Pemerintah Provinsi Jawa Timur
         </p>
       </div>
@@ -183,7 +183,7 @@ export default function DataKemiskinan() {
       <div className="flex flex-col sm:flex-row flex-wrap gap-3 sm:gap-4">
         <div className="relative w-full sm:w-auto sm:min-w-[200px]">
           <select
-            className="w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 pr-10 sm:pr-12 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D1F447] focus:border-transparent bg-white text-gray-900 font-medium text-sm sm:text-base appearance-none cursor-pointer hover:border-[#D1F447] transition-colors"
+            className="w-full sm:w-auto px-3 sm:px-4 py-2 sm:py-2.5 pr-10 sm:pr-12 border border-(--color-border) rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D1F447] focus:border-transparent bg-(--color-card-bg) text-(--color-text) font-medium text-sm sm:text-base appearance-none cursor-pointer hover:border-[#D1F447] transition-colors"
             value={selectedYear}
             onChange={(e) => setSelectedYear(e.target.value)}
           >
@@ -200,7 +200,7 @@ export default function DataKemiskinan() {
         </div>
 
         <select
-          className="w-full sm:w-auto sm:min-w-[200px] px-3 sm:px-4 py-2 sm:py-2.5 border border-gray-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D1F447] focus:border-transparent bg-white text-gray-900 font-medium text-sm sm:text-base cursor-pointer hover:border-[#D1F447] transition-colors"
+          className="w-full sm:w-auto sm:min-w-[200px] px-3 sm:px-4 py-2 sm:py-2.5 border border-(--color-border) rounded-xl focus:outline-none focus:ring-2 focus:ring-[#D1F447] focus:border-transparent bg-(--color-card-bg) text-(--color-text) font-medium text-sm sm:text-base cursor-pointer hover:border-[#D1F447] transition-colors"
           value={jenisData}
           onChange={(e) => setJenisData(e.target.value)}
         >
@@ -211,11 +211,11 @@ export default function DataKemiskinan() {
 
       {/* Stats Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-5 lg:gap-6">
-        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-100">
+        <div className="bg-(--color-card-bg) rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-(--color-border)">
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
-              <p className="text-xs sm:text-sm text-gray-600 mb-1">Total Data</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">{filteredData.length.toLocaleString()}</h2>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-1">Total Data</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-(--color-text) truncate">{filteredData.length.toLocaleString()}</h2>
               {selectedYear !== "all" && (
                 <p className="text-xs text-gray-500 mt-1">Tahun {selectedYear}</p>
               )}
@@ -226,11 +226,11 @@ export default function DataKemiskinan() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-100">
+        <div className="bg-(--color-card-bg) rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-(--color-border)">
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
-              <p className="text-xs sm:text-sm text-gray-600 mb-1">Tahun Terdata</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">{tahunData.labels.length}</h2>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-1">Tahun Terdata</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-(--color-text) truncate">{tahunData.labels.length}</h2>
               {selectedYear !== "all" && (
                 <p className="text-xs text-gray-500 mt-1">Tahun {selectedYear}</p>
               )}
@@ -241,11 +241,11 @@ export default function DataKemiskinan() {
           </div>
         </div>
 
-        <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-gray-100 sm:col-span-2 lg:col-span-1">
+        <div className="bg-(--color-card-bg) rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 shadow-lg border border-(--color-border) sm:col-span-2 lg:col-span-1">
           <div className="flex items-center justify-between">
             <div className="flex-1 min-w-0">
-              <p className="text-xs sm:text-sm text-gray-600 mb-1">Total Wilayah</p>
-              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 truncate">{wilayahData.labels.length}</h2>
+              <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mb-1">Total Wilayah</p>
+              <h2 className="text-2xl sm:text-3xl font-bold text-(--color-text) truncate">{wilayahData.labels.length}</h2>
               {selectedYear !== "all" && (
                 <p className="text-xs text-gray-500 mt-1">Tahun {selectedYear}</p>
               )}
@@ -258,9 +258,9 @@ export default function DataKemiskinan() {
       </div>
 
       {/* Chart */}
-      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg border border-gray-100">
+      <div className="bg-(--color-card-bg) rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg border border-(--color-border)">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 sm:gap-4 mb-4 sm:mb-6">
-          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900">
+          <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-(--color-text)">
             {jenisData === "persentase"
               ? "Tren Kemiskinan per Tahun"
               : "Kemiskinan per Kabupaten/Kota"}
@@ -277,8 +277,8 @@ export default function DataKemiskinan() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg border border-gray-100">
-        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-gray-900 mb-4 sm:mb-6">Tabel Data</h2>
+      <div className="bg-(--color-card-bg) rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 lg:p-8 shadow-lg border border-(--color-border)">
+        <h2 className="text-lg sm:text-xl md:text-2xl font-semibold text-(--color-text) mb-4 sm:mb-6">Tabel Data</h2>
         <div className="overflow-x-auto -mx-4 sm:mx-0">
           <div className="inline-block min-w-full align-middle">
             <table className="min-w-full">

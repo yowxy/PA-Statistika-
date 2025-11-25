@@ -202,11 +202,11 @@ export default function UjiHipotesis() {
 
   return (
     <LayoutsDashboard>
-      <div className="space-y-6">
+      <div className="space-y-6 text-(--color-text) transition-colors duration-200">
         {/* Header */}
         <div>
-          <h1 className="text-3xl font-bold text-gray-900">Uji Hipotesis</h1>
-          <p className="mt-2 text-gray-600">
+          <h1 className="text-3xl font-bold text-(--color-text)">Uji Hipotesis</h1>
+          <p className="mt-2 text-gray-600 dark:text-gray-300">
             Lakukan pengujian hipotesis statistik untuk analisis data kemiskinan
           </p>
         </div>
@@ -293,7 +293,7 @@ export default function UjiHipotesis() {
                   {selectedRegion && (
                     <div className="p-3 sm:p-4 bg-white rounded-lg border border-gray-200">
                       <p className="text-xs text-gray-600 mb-1">Data yang dipilih:</p>
-                      <p className="text-sm sm:text-base font-semibold text-gray-900 break-words">
+                      <p className="text-sm sm:text-base font-semibold text-gray-900 wrap-break-word">
                         {selectedRegion} {selectedYear !== "all" && `- Tahun ${selectedYear}`}
                       </p>
                       {sampleSize && (
@@ -329,7 +329,7 @@ export default function UjiHipotesis() {
         </div>
 
         {/* Method Selection Card */}
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+        <div className="bg-(--color-card-bg) rounded-2xl p-6 shadow-lg border border-(--color-border)">
           <div className="flex items-center gap-3 mb-4">
             <div className="w-10 h-10 bg-[#D1F447] rounded-xl flex items-center justify-center">
               <Calculator className="w-6 h-6 text-gray-900" />
@@ -361,7 +361,7 @@ export default function UjiHipotesis() {
         </div>
 
         {/* Hypothesis Input */}
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+        <div className="bg-(--color-card-bg) rounded-2xl p-6 shadow-lg border border-(--color-border)">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Hipotesis</h2>
           <div className="space-y-4">
             <div>
@@ -392,7 +392,7 @@ export default function UjiHipotesis() {
         </div>
 
         {/* Parameters */}
-        <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+        <div className="bg-(--color-card-bg) rounded-2xl p-6 shadow-lg border border-(--color-border)">
           <h2 className="text-xl font-semibold text-gray-900 mb-4">Parameter Uji</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>

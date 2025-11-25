@@ -5,14 +5,17 @@ import App from './App.tsx';
 import './input.css';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { ThemeProvider } from './context/ThemeContext.tsx';
 
 AOS.init();
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
+    <ThemeProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ThemeProvider>
   </React.StrictMode>
 );
   

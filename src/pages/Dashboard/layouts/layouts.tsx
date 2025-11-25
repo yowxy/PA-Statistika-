@@ -8,12 +8,12 @@ interface LayoutsDashboardProps {
 
 export default function LayoutsDashboard({ children }: LayoutsDashboardProps) {
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-(--color-body-bg) transition-colors duration-200">
       {/* Sidebar fixed */}
       <Sidebar />
 
       {/* Content */}
-      <div className="flex-1 min-h-screen sm:ml-56 md:ml-64 transition-all duration-300">
+      <div className="flex-1 min-h-screen sm:ml-56 md:ml-64 transition-all duration-300 text-(--color-text)">
         <NavbarDashboard />
 
         <main className="p-4 sm:p-5 md:p-6 lg:p-8">

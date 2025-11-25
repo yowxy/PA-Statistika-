@@ -47,32 +47,32 @@ export default function Interpretasi() {
 
   return (
     <LayoutsDashboard>
-      <div className="space-y-6">
+      <div className="space-y-6 text-(--color-text) transition-colors duration-200">
         {/* Header */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-4">
             <button
               onClick={() => navigate(-1)}
-              className="p-2 hover:bg-gray-100 rounded-xl transition-colors"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-white/10 rounded-xl transition-colors"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <div>
-              <h1 className="text-3xl font-bold text-gray-900">Interpretasi Uji Hipotesis</h1>
-              <p className="mt-1 text-gray-600">Penjelasan detail hasil pengujian hipotesis</p>
+              <h1 className="text-3xl font-bold">Interpretasi Uji Hipotesis</h1>
+              <p className="mt-1 text-gray-600 dark:text-gray-300">Penjelasan detail hasil pengujian hipotesis</p>
             </div>
           </div>
         </div>
 
         {/* Decision Banner */}
-        <div className={`rounded-2xl p-6 shadow-lg border-2 ${
+        <div className={`rounded-2xl p-6 shadow-lg border-2 transition-colors duration-200 ${
           isRejected 
-            ? "bg-red-50 border-red-200" 
-            : "bg-green-50 border-green-200"
+            ? "bg-red-50 border-red-200 dark:bg-red-900/30 dark:border-red-500/60" 
+            : "bg-green-50 border-green-200 dark:bg-green-900/30 dark:border-green-500/60"
         }`}>
           <div className="flex items-center gap-4">
             <div className={`w-16 h-16 rounded-xl flex items-center justify-center ${
-              isRejected ? "bg-red-100" : "bg-green-100"
+              isRejected ? "bg-red-100 dark:bg-red-500/40" : "bg-green-100 dark:bg-green-500/40"
             }`}>
               {isRejected ? (
                 <XCircle className="w-8 h-8 text-red-600" />
@@ -81,7 +81,7 @@ export default function Interpretasi() {
               )}
             </div>
             <div className="flex-1">
-              <p className="text-sm font-medium text-gray-600 mb-1">Keputusan Uji</p>
+              <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-1">Keputusan Uji</p>
               <h2 className={`text-2xl font-bold ${
                 isRejected ? "text-red-700" : "text-green-700"
               }`}>
@@ -93,60 +93,60 @@ export default function Interpretasi() {
 
         {/* Key Statistics */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+          <div className="bg-(--color-card-bg) rounded-2xl p-6 shadow-lg border border-(--color-border)">
             <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center mb-4">
               <BarChart3 className="w-6 h-6 text-gray-900" />
             </div>
-            <p className="text-sm font-medium text-gray-600 mb-2">Statistik Uji</p>
-            <p className="text-3xl font-bold text-gray-900">
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Statistik Uji</p>
+            <p className="text-3xl font-bold">
               {data.stat.toFixed(4)}
             </p>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
               |Statistik| = {absStat.toFixed(4)}
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+          <div className="bg-(--color-card-bg) rounded-2xl p-6 shadow-lg border border-(--color-border)">
             <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center mb-4">
               <Target className="w-6 h-6 text-gray-900" />
             </div>
-            <p className="text-sm font-medium text-gray-600 mb-2">Nilai Kritis</p>
-            <p className="text-3xl font-bold text-gray-900">
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">Nilai Kritis</p>
+            <p className="text-3xl font-bold">
               ±{data.critical.toFixed(2)}
             </p>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
               Daerah penolakan: |z| &gt; {data.critical.toFixed(2)}
             </p>
           </div>
 
-          <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100">
+          <div className="bg-(--color-card-bg) rounded-2xl p-6 shadow-lg border border-(--color-border)">
             <div className="w-12 h-12 bg-[#D1F447] rounded-xl flex items-center justify-center mb-4">
               <TrendingUp className="w-6 h-6 text-gray-900" />
             </div>
-            <p className="text-sm font-medium text-gray-600 mb-2">p-value</p>
-            <p className="text-3xl font-bold text-gray-900">
+            <p className="text-sm font-medium text-gray-600 dark:text-gray-300 mb-2">p-value</p>
+            <p className="text-3xl font-bold">
               {data.pValue.toFixed(4)}
             </p>
-            <p className="text-xs text-gray-500 mt-2">
+            <p className="text-xs text-gray-500 dark:text-gray-400 mt-2">
               Probabilitas ekstrem
             </p>
           </div>
         </div>
 
         {/* Detailed Interpretation */}
-        <div className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg border border-gray-100">
+        <div className="bg-(--color-card-bg) rounded-2xl p-6 lg:p-8 shadow-lg border border-(--color-border)">
           <div className="flex items-center gap-3 mb-6">
             <div className="w-10 h-10 bg-[#D1F447] rounded-xl flex items-center justify-center">
               <Lightbulb className="w-5 h-5 text-gray-900" />
             </div>
-            <h2 className="text-xl font-semibold text-gray-900">Interpretasi Hasil</h2>
+            <h2 className="text-xl font-semibold">Interpretasi Hasil</h2>
           </div>
 
           <div className="space-y-4">
             {/* Comparison */}
             <div className="p-4 bg-[#D1F447]/10 rounded-xl border border-[#D1F447]/20">
-              <h3 className="font-semibold text-gray-900 mb-2">Perbandingan Nilai</h3>
-              <div className="space-y-2 text-sm text-gray-700">
+              <h3 className="font-semibold mb-2">Perbandingan Nilai</h3>
+              <div className="space-y-2 text-sm text-gray-700 dark:text-gray-300">
                 <p>
                   • Statistik Uji: <span className="font-bold">{data.stat.toFixed(4)}</span>
                 </p>
@@ -170,9 +170,9 @@ export default function Interpretasi() {
             </div>
 
             {/* Decision Explanation */}
-            <div className="p-4 bg-gray-50 rounded-xl">
-              <h3 className="font-semibold text-gray-900 mb-2">Kesimpulan</h3>
-              <p className="text-gray-700 leading-relaxed">
+            <div className="p-4 bg-gray-50 dark:bg-white/5 rounded-xl">
+              <h3 className="font-semibold mb-2">Kesimpulan</h3>
+              <p className="text-gray-700 dark:text-gray-300 leading-relaxed">
                 {isRejected ? (
                   <>
                     Berdasarkan hasil perhitungan, <strong>H₀ ditolak</strong> pada tingkat signifikansi yang digunakan. 
@@ -194,10 +194,10 @@ export default function Interpretasi() {
             {/* Practical Meaning */}
             <div className="p-4 bg-[#D1F447]/5 rounded-xl border border-[#D1F447]/10">
               <div className="flex items-center gap-2 mb-2">
-                <BookOpen className="w-5 h-5 text-gray-700" />
-                <h3 className="font-semibold text-gray-900">Makna Praktis</h3>
+                <BookOpen className="w-5 h-5 text-gray-700 dark:text-gray-300" />
+                <h3 className="font-semibold">Makna Praktis</h3>
               </div>
-              <p className="text-sm text-gray-700 leading-relaxed">
+              <p className="text-sm text-gray-700 dark:text-gray-300 leading-relaxed">
                 {isRejected ? (
                   <>
                     Hasil ini menunjukkan bahwa temuan dari sampel memberikan bukti yang kuat terhadap hipotesis alternatif. 
